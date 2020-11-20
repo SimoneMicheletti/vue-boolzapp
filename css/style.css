@@ -19,8 +19,7 @@ main {
   display: flex;
   height: calc(100% - 60px);
   width: 80%;
-  min-width: 1000px;
-  background-color: red;
+  /* min-width: 1000px; */
   font-family: 'Lato', sans-serif;
 }
 
@@ -37,6 +36,7 @@ main {
   background-color: #EAEAEA;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 8px;
 }
 
@@ -56,7 +56,7 @@ main {
 
 .top-icons i {
   margin-right: 20px;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .top-icons i:hover {
@@ -108,7 +108,7 @@ main {
 #src-chat {
   height: 50px;
   background-color: #fafafa;
-  padding: 5px;
+  padding: 8px;
 }
 
 #src-chat>div {
@@ -127,6 +127,7 @@ main {
 #src-chat>div>input {
   border: 0;
   color: grey;
+  width: 100%;
 }
 
 
@@ -135,13 +136,13 @@ main {
 #chatlist {
   height: calc(100% - 210px);
   background-color: white;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 #chatlist .contacts {
   height: 80px;
   display: flex;
-  padding: 8px 5px 8px 20px;
+  padding: 8px 8px 8px 20px;
   border-bottom: 1px solid #EAEAEA;
 }
 
@@ -149,11 +150,11 @@ main {
   height: 100%;
   width: 63px;
   border-radius: 50%;
+  margin-right: 20px;
 }
 
 #chatlist .contact-elm {
   flex-grow: 1;
-  margin: 0 20px;
 }
 
 #chatlist .prev-time {
@@ -174,7 +175,7 @@ main {
   height: calc(100% - 160px);
   background-image: url(../img/mine.jpg);
   padding: 50px 80px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 #mainchat .green {
@@ -191,6 +192,7 @@ main {
   max-width: 500px;
   padding: 10px 20px;
   margin-bottom: 12px;
+  overflow: hidden;
 }
 
 #mainchat .green .message {
@@ -235,4 +237,63 @@ main {
   border: 0;
   border-radius: 5px;
   padding: 18px 10px;
+}
+
+
+
+/* media query */
+
+@media all and (max-width:1300px) {
+
+  /* aumento larghrzza main */
+  main {
+    width: 90%;
+  }
+
+  /* rimuovo nome profilo */
+  #left .top-name {
+    display: none
+  }
+
+  /* tolgo scritta "ricevi notifice di nuovi mesaggi" */
+  #att-not>div:last-child>div:first-child {
+    display: none;
+  }
+
+  /* rimuovo foto lista contatti */
+  #chatlist>.contacts>img {
+    display: none;
+  }
+
+  /* diminuisco padding main chat */
+  #mainchat {
+    padding: 30px 20px;
+  }
+}
+
+
+@media all and (max-width:992px) {
+
+  /* aumento main */
+  main {
+    width: 100%;
+    height: 100%;
+  }
+
+
+  /* riduco icone top */
+  .top-icons i {
+    margin-right: 10px;
+    font-size: 15px;
+  }
+
+  /* rimuovo ora ultimo messaggio in chat list */
+  #chatlist>.contacts>.prev-time {
+    display: none;
+  }
+
+  /* riduco ora ultimo accesso */
+  #right .top .top-name div:last-child {
+    font-size: 10px;
+  }
 }
