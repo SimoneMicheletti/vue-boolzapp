@@ -163,8 +163,6 @@ main {
 
 
 
-
-
 /* Right */
 
 #right {
@@ -175,8 +173,42 @@ main {
 #mainchat {
   height: calc(100% - 160px);
   background-image: url(../img/mine.jpg);
+  padding: 50px 80px;
+  overflow-y: scroll;
 }
 
+#mainchat .green {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#mainchat .white {
+  display: flex;
+}
+
+#mainchat .message {
+  min-width: 300px;
+  max-width: 500px;
+  padding: 10px 20px;
+  margin-bottom: 12px;
+}
+
+#mainchat .green .message {
+  background-color: #cbfbb3;
+  border-radius: 15px 15px 0 15px;
+}
+
+#mainchat .white .message {
+  background-color: white;
+  border-radius: 15px 15px 15px 0;
+}
+
+#mainchat .msg-time {
+  color: silver;
+  text-align: right;
+  font-size: 10px;
+  margin-top: 5px;
+}
 
 
 /* Right bottom */
