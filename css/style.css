@@ -1,0 +1,206 @@
+/* Regole generali */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#background {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../img/sfondo.png);
+  /* background-size: contain; */
+}
+
+main {
+  display: flex;
+  height: calc(100% - 60px);
+  width: 80%;
+  min-width: 1000px;
+  background-color: red;
+  font-family: 'Lato', sans-serif;
+}
+
+.silver {
+  color: silver;
+}
+
+
+
+/* Top */
+
+.top {
+  height: 80px;
+  background-color: #EAEAEA;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+}
+
+.top img {
+  height: 100%;
+  border-radius: 50%;
+}
+
+.top-name {
+  flex-grow: 1;
+  margin: 0 8px;
+}
+
+#right .top-name {
+  margin: 0 15px;
+}
+
+.top-icons i {
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.top-icons i:hover {
+  cursor: pointer;
+  color: grey;
+}
+
+
+/* Left */
+
+#left {
+  height: 100%;
+  width: 30%;
+  border-right: 1px solid lightgrey;
+}
+
+/* left enable notifications  */
+
+#att-not {
+  height: 80px;
+  background-color: #76dcff;
+  display: flex;
+  align-items: center;
+}
+
+#att-not>div:first-child {
+  background-color: white;
+  border-radius: 50%;
+  height: 55px;
+  width: 55px;
+  margin: 0 8px 0 15px;
+  color: #76dcff;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#att-not a {
+  color: grey;
+}
+
+#att-not a:hover {
+  color: #404040;
+}
+
+/* left search chat */
+
+#src-chat {
+  height: 50px;
+  background-color: #fafafa;
+  padding: 5px;
+}
+
+#src-chat>div {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #EAEAEA;
+}
+
+#src-chat>div>* {
+  margin-left: 30px;
+}
+
+#src-chat>div>input {
+  border: 0;
+  color: grey;
+}
+
+
+/* left chat list */
+
+#chatlist {
+  height: calc(100% - 210px);
+  background-color: white;
+  overflow-y: scroll;
+}
+
+#chatlist .contacts {
+  height: 80px;
+  display: flex;
+  padding: 8px 5px 8px 20px;
+  border-bottom: 1px solid #EAEAEA;
+}
+
+#chatlist .contacts img {
+  height: 100%;
+  width: 63px;
+  border-radius: 50%;
+}
+
+#chatlist .contact-elm {
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+#chatlist .prev-time {
+  font-size: 12px;
+}
+
+
+
+
+
+
+/* Right */
+
+#right {
+  height: 100%;
+  width: 70%;
+}
+
+#mainchat {
+  height: calc(100% - 160px);
+  background-image: url(../img/mine.jpg);
+}
+
+
+
+/* Right bottom */
+
+#rightbottom {
+  height: 80px;
+  background-color: #f4eee9;
+  display: flex;
+  align-items: center;
+}
+
+#rightbottom>i {
+  margin: 0 20px;
+  color: grey;
+  font-size: 25px;
+}
+
+#rightbottom>div {
+  flex-grow: 1;
+}
+
+#rightbottom input {
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 18px 10px;
+}
