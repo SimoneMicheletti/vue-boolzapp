@@ -5,13 +5,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <title>BoolzApp by Simone</title>
   </head>
   <body>
 
     <div id="background">
 
-      <main>
+      <main id="app">
 
         <!-- Section Left -->
         <section id="left">
@@ -59,81 +60,20 @@
           <!-- Chat list -->
           <div id="chatlist">
 
-            <div class="contacts">
-              <img src="img/avatar_1.jpg" alt="avatar1">
+            <div class="contacts" v-for="(contact,i) in rub" @click="activeChat(i)" :class="{'selected': i===active}">
+              <img :src="contact.img" alt="avatar1">
               <div class="contact-elm">
                 <div class="contact-name">
-                  Michele
+                  {{contact.name}}
                 </div>
                 <div class="contact-prev silver">
-                  ciao
+                  {{contact.chat[contact.chat.length-1].text}}
                 </div>
               </div>
               <div class="prev-time silver">
-                20 11 2020 10:52:03
+                {{contact.chat[contact.chat.length-1].time}}
               </div>
             </div>
-
-            <div class="contacts">
-              <img src="img/avatar_1.jpg" alt="avatar1">
-              <div class="contact-elm">
-                <div class="contact-name">
-                  Michele
-                </div>
-                <div class="contact-prev silver">
-                  ciao
-                </div>
-              </div>
-              <div class="prev-time silver">
-                20 11 2020 10:52:03
-              </div>
-            </div>
-
-            <div class="contacts">
-              <img src="img/avatar_1.jpg" alt="avatar1">
-              <div class="contact-elm">
-                <div class="contact-name">
-                  Michele
-                </div>
-                <div class="contact-prev silver">
-                  ciao
-                </div>
-              </div>
-              <div class="prev-time silver">
-                20 11 2020 10:52:03
-              </div>
-            </div>
-
-            <div class="contacts">
-              <img src="img/avatar_1.jpg" alt="avatar1">
-              <div class="contact-elm">
-                <div class="contact-name">
-                  Michele
-                </div>
-                <div class="contact-prev silver">
-                  ciao
-                </div>
-              </div>
-              <div class="prev-time silver">
-                20 11 2020 10:52:03
-              </div>
-            </div>
-
-            <div class="contacts">
-              <img src="img/avatar_1.jpg" alt="avatar1">
-              <div class="contact-elm">
-                <div class="contact-name">
-                  Michele
-                </div>
-                <div class="contact-prev silver">
-                  ciao
-                </div>
-              </div>
-              <div class="prev-time silver">
-                20 11 2020 10:52:03
-              </div>
-            </div>
-
 
           </div>
 
@@ -145,14 +85,14 @@
           <!-- Section right top -->
           <div class="top">
 
-            <img src="img/avatar_4.jpg" alt="avatar_4">
+            <img :src="rub[active].img" alt="avatar">
 
             <div class="top-name">
               <div>
-                Luisa
+                {{rub[active].name}}
               </div>
               <div class="silver">
-                Ultimo accesso oggi alle 12:01:32
+                Ultimo accesso oggi {{rub[active].chat[rub[active].chat.length-1].time}}
               </div>
             </div>
 
@@ -167,61 +107,16 @@
           <!-- Section right main chat -->
           <div id="mainchat">
 
-            <div class="green">
+            <div v-for="message in rub[active].chat" :class="message.type==='out' ? 'green' : 'white'">
               <div class="message">
                 <div class="msg-text">
-                  Lo sai che ha aperto una nuova pizzeria?
+                  {{message.text}}
                 </div>
                 <div class="msg-time">
-                  10/01/2020 15:30:55
+                  {{message.time}}
                 </div>
               </div>
             </div>
-
-            <div class="white">
-              <div class="message">
-                <div class="msg-text">
-                  Si, ma preferirei andare al cinema
-                </div>
-                <div class="msg-time">
-                  10/01/2020 15:50:00
-                </div>
-              </div>
-            </div>
-
-            <div class="green">
-              <div class="message">
-                <div class="msg-text">
-                  Ok!!
-                </div>
-                <div class="msg-time">
-                  10/01/2020 15:50:00
-                </div>
-              </div>
-            </div>
-
-            <div class="green">
-              <div class="message">
-                <div class="msg-text">
-                  Andata per il cinema
-                </div>
-                <div class="msg-time">
-                  10/01/2020 15:50:00
-                </div>
-              </div>
-            </div>
-
-            <div class="white">
-              <div class="message">
-                <div class="msg-text">
-                  A dopo!
-                </div>
-                <div class="msg-time">
-                  10/01/2020 15:50:00
-                </div>
-              </div>
-            </div>
-
 
           </div>
 
@@ -240,5 +135,7 @@
 
     </div>
 
+
+    <script src="js/script.js"></script>
   </body>
 </html>
