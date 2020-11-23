@@ -132,6 +132,11 @@ main {
   width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
+  color: black;
+}
+
+#rightbottom input::placeholder {
+  color: silver;
 }
 
 

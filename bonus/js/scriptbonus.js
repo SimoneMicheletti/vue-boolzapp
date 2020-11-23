@@ -133,7 +133,6 @@ var app = new Vue({
     // funzione risposta automatica
     autoResp: function() {
       var resp = {text: this.arrayRandomResp[Math.floor(Math.random() * 6)], time: this.getTime(), type: "in"};
-      console.log(Math.floor(Math.random() * 6));
       this.rub[this.active].chat.push(resp);
     },
 
