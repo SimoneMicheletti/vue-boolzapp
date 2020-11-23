@@ -130,6 +130,8 @@ main {
   border: 0;
   color: grey;
   width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 
@@ -150,6 +152,7 @@ main {
 
 #chatlist .contacts:hover {
   cursor: pointer;
+  background-color: WhiteSmoke;
 }
 
 #chatlist .contacts img {
@@ -161,6 +164,13 @@ main {
 
 #chatlist .contact-elm {
   flex-grow: 1;
+}
+
+#chatlist .contact-prev {
+  max-width: 120px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 #chatlist .prev-time {
@@ -249,7 +259,7 @@ main {
 
 /* media query */
 
-@media all and (max-width:1300px) {
+@media all and (max-width:1400px) {
 
   /* aumento larghrzza main */
   main {
@@ -266,8 +276,8 @@ main {
     display: none;
   }
 
-  /* rimuovo foto lista contatti */
-  #chatlist>.contacts>img {
+  /* rimuovo ultimo accesso lista contatti */
+  #chatlist>.contacts>.prev-time {
     display: none;
   }
 
@@ -293,8 +303,8 @@ main {
     font-size: 15px;
   }
 
-  /* rimuovo ora ultimo messaggio in chat list */
-  #chatlist>.contacts>.prev-time {
+  /* rimuovo anteprima ultimo msg in chat list */
+  #chatlist>.contacts .contact-prev {
     display: none;
   }
 

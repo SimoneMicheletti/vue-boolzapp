@@ -59,7 +59,6 @@
 
           <!-- Chat list -->
           <div id="chatlist">
-
             <div class="contacts" v-for="(contact,i) in rub" @click="activeChat(i)" :class="{'selected': i===active}">
               <img :src="contact.img" alt="avatar1">
               <div class="contact-elm">
@@ -74,7 +73,6 @@
                 {{contact.chat[contact.chat.length-1].time}}
               </div>
             </div>
-
           </div>
 
         </section>
@@ -86,13 +84,12 @@
           <div class="top">
 
             <img :src="rub[active].img" alt="avatar">
-
             <div class="top-name">
               <div>
                 {{rub[active].name}}
               </div>
               <div class="silver">
-                Ultimo accesso oggi {{rub[active].chat[rub[active].chat.length-1].time}}
+                Ultimo accesso {{rub[active].chat[rub[active].chat.length-1].time}}
               </div>
             </div>
 
