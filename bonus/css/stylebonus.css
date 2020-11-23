@@ -1,0 +1,315 @@
+/* Regole generali */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#background {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../img/sfondo.png);
+  /* background-size: contain; */
+}
+
+main {
+  display: flex;
+  height: calc(100% - 60px);
+  width: 80%;
+  /* min-width: 1000px; */
+  font-family: 'Lato', sans-serif;
+}
+
+.silver {
+  color: silver;
+}
+
+.selected {
+  background-color: WhiteSmoke;
+}
+
+/* Top */
+
+.top {
+  height: 80px;
+  background-color: #EAEAEA;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.top img {
+  height: 100%;
+  border-radius: 50%;
+}
+
+.top-name {
+  flex-grow: 1;
+  margin: 0 8px;
+}
+
+#right .top-name {
+  margin: 0 15px;
+}
+
+.top-icons i {
+  margin-right: 20px;
+  font-size: 22px;
+}
+
+.top-icons i:hover {
+  cursor: pointer;
+  color: grey;
+}
+
+
+/* Left */
+
+#left {
+  height: 100%;
+  width: 30%;
+  border-right: 1px solid lightgrey;
+}
+
+/* left enable notifications  */
+
+#att-not {
+  height: 80px;
+  background-color: #76dcff;
+  display: flex;
+  align-items: center;
+}
+
+#att-not>div:first-child {
+  background-color: white;
+  border-radius: 50%;
+  height: 55px;
+  width: 55px;
+  margin: 0 8px 0 15px;
+  color: #76dcff;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#att-not a {
+  color: grey;
+}
+
+#att-not a:hover {
+  color: #404040;
+}
+
+/* left search chat */
+
+#src-chat {
+  height: 50px;
+  background-color: #fafafa;
+  padding: 8px;
+}
+
+#src-chat>div {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #EAEAEA;
+}
+
+#src-chat>div>* {
+  margin-left: 30px;
+}
+
+#src-chat>div>input {
+  border: 0;
+  color: grey;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+/* left chat list */
+
+#chatlist {
+  height: calc(100% - 210px);
+  background-color: white;
+  overflow-y: auto;
+}
+
+#chatlist .contacts {
+  height: 80px;
+  display: flex;
+  padding: 8px 8px 8px 20px;
+  border-bottom: 1px solid #EAEAEA;
+}
+
+#chatlist .contacts:hover {
+  cursor: pointer;
+  background-color: WhiteSmoke;
+}
+
+#chatlist .contacts img {
+  height: 100%;
+  width: 63px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+#chatlist .contact-elm {
+  flex-grow: 1;
+}
+
+#chatlist .contact-prev {
+  max-width: 120px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+#chatlist .prev-time {
+  font-size: 12px;
+}
+
+
+
+
+/* Right */
+
+#right {
+  height: 100%;
+  width: 70%;
+}
+
+#mainchat {
+  height: calc(100% - 160px);
+  background-image: url(../img/mine.jpg);
+  padding: 50px 80px;
+  overflow-y: auto;
+}
+
+#mainchat .green {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#mainchat .white {
+  display: flex;
+}
+
+#mainchat .message {
+  min-width: 300px;
+  max-width: 500px;
+  padding: 10px 20px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+#mainchat .green .message {
+  background-color: #cbfbb3;
+  border-radius: 15px 15px 0 15px;
+}
+
+#mainchat .white .message {
+  background-color: white;
+  border-radius: 15px 15px 15px 0;
+}
+
+#mainchat .msg-time {
+  color: silver;
+  text-align: right;
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+
+/* Right bottom */
+
+#rightbottom {
+  height: 80px;
+  background-color: #f4eee9;
+  display: flex;
+  align-items: center;
+}
+
+#rightbottom>i {
+  margin: 0 20px;
+  color: grey;
+  font-size: 25px;
+}
+
+#rightbottom>div {
+  flex-grow: 1;
+}
+
+#rightbottom input {
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 18px 10px;
+}
+
+
+
+/* media query */
+
+@media all and (max-width:1400px) {
+
+  /* aumento larghrzza main */
+  main {
+    width: 90%;
+  }
+
+  /* rimuovo nome profilo */
+  #left .top-name {
+    display: none
+  }
+
+  /* tolgo scritta "ricevi notifice di nuovi mesaggi" */
+  #att-not>div:last-child>div:first-child {
+    display: none;
+  }
+
+  /* rimuovo ultimo accesso lista contatti */
+  #chatlist>.contacts>.prev-time {
+    display: none;
+  }
+
+  /* diminuisco padding main chat */
+  #mainchat {
+    padding: 30px 20px;
+  }
+}
+
+
+@media all and (max-width:992px) {
+
+  /* aumento main */
+  main {
+    width: 100%;
+    height: 100%;
+  }
+
+
+  /* riduco icone top */
+  .top-icons i {
+    margin-right: 10px;
+    font-size: 15px;
+  }
+
+  /* rimuovo anteprima ultimo msg in chat list */
+  #chatlist>.contacts .contact-prev {
+    display: none;
+  }
+
+  /* riduco ora ultimo accesso */
+  #right .top .top-name div:last-child {
+    font-size: 10px;
+  }
+}
