@@ -138,13 +138,14 @@ var app = new Vue({
       setTimeout(this.scrollBottom, 1)
     },
 
-    // funzione per spostare ultima chat utilizzata al primo posto
+    // funzione per spostare chat utilizzata al primo posto
     contactSort: function() {
       var spostare = this.rub[this.active]
       this.rub.splice(this.active, 1)
       this.rub.unshift(spostare)
     },
 
+    // Funzione per scrollare automaticamente in basso chat
     scrollBottom: function() {
       var cnt = document.getElementById("mainchat");
       cnt.scrollTop = cnt.scrollHeight;
