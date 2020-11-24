@@ -121,9 +121,9 @@
           <div id="rightbottom">
             <i class="far fa-smile"></i>
             <div>
-              <input type="text" name="" value="" placeholder="Scrivi un messaggio">
+              <input v-model="inputMsg" class="silver" type="text" placeholder="Scrivi un messaggio" @keypress.enter="pushNewMsg">
             </div>
-            <i class="fas fa-microphone"></i>
+            <i class="fas fa-microphone" @click="pushNewMsg"></i>
           </div>
 
         </section>

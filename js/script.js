@@ -2,7 +2,9 @@ var app = new Vue({
   el: "#app",
 
   data: {
+    inputMsg: "",
     active: 0,
+    arrayRandomResp: ["Si", "No", "Forse", "Dipende", "Va bene", "Ok"],
     rub: [ {  name: "Michele",
               img: "img/avatar_1.jpg",
               chat: [ { text: "Lo sai che ha aperto una nuova pizzeria",
@@ -22,7 +24,7 @@ var app = new Vue({
                         type: "out"
                       },
                       { text: "A dopo!",
-                        time: "23/10/2020 13:41",
+                        time: "23/10/2020 17:21",
                         type: "in"
                       }
                     ]
@@ -38,7 +40,7 @@ var app = new Vue({
                         type: "in"
                       },
                       { text: "Bene anche io grazie",
-                        time: "23/10/2020 13:59",
+                        time: "23/10/2020 16:59",
                         type: "out"
                       }
                     ]
@@ -58,7 +60,7 @@ var app = new Vue({
                         type: "out"
                       },
                       { text: "ok a domani!",
-                        time: "23/10/2020 13:36",
+                        time: "23/10/2020 15:36",
                         type: "in"
                       }
                     ]
@@ -82,7 +84,7 @@ var app = new Vue({
                         type: "out"
                       },
                       { text: "anche io!",
-                        time: "23/10/2020 13:57",
+                        time: "23/10/2020 14:57",
                         type: "in"
                       }
                     ]
@@ -108,16 +110,45 @@ var app = new Vue({
 
   methods: {
 
+    // funzione active chat
     activeChat: function(i) {
       this.active = i
-    }
+    },
 
-    // prova funzione che userò per catturare data e ora dei nuovi messaggi
-    // getTime: function() {
-    //   var dataOra = new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear() + " " + new Date().getHours() + ":" + new Date().getMinutes()
-    //   console.log(dataOra);
-    //   this.rub[0].chat[0].time = dataOra
-    // }
+    // funzione push new msg
+    pushNewMsg: function() {
+      if (this.inputMsg != "") {
+        var newMsg = {text: this.inputMsg, time: this.getTime(), type: "out"};
+        this.rub[this.active].chat.push(newMsg);
+        setTimeout(this.scrollBottom, 1)
+        setTimeout(this.autoResp, 1000);
+        this.contactSort();
+        this.active = 0;
+        this.inputMsg = "";
+      }
+    },
+
+    // funzione cattura data e ora
+    getTime: () => new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear() + " " + new Date().getHours() + ":" + new Date().getMinutes(),
+
+    // funzione risposta automatica
+    autoResp: function() {
+      var resp = {text: this.arrayRandomResp[Math.floor(Math.random() * 6)], time: this.getTime(), type: "in"};
+      this.rub[this.active].chat.push(resp);
+      setTimeout(this.scrollBottom, 1)
+    },
+
+    // funzione per spostare ultima chat utilizzata al primo posto
+    contactSort: function() {
+      var spostare = this.rub[this.active]
+      this.rub.splice(this.active, 1)
+      this.rub.unshift(spostare)
+    },
+
+    scrollBottom: function() {
+      var cnt = document.getElementById("mainchat");
+      cnt.scrollTop = cnt.scrollHeight;
+    }
 
   }
 
