@@ -59,7 +59,7 @@
 
           <!-- Chat list -->
           <div id="chatlist">
-            <div class="contacts" v-for="(contact,i) in rub" v-if="contact.name.toLowerCase().indexOf(searchKey.toLowerCase())>-1" @click="activeChat(i)" :class="{'selected': i===active}">
+            <div class="contacts" v-for="(contact,i) in rub" v-if="contact.name.toLowerCase().includes(searchKey.toLowerCase())" @click="activeChat(i)" :class="{'selected': i===active}">
               <img :src="contact.img" alt="avatar1">
               <div class="contact-elm">
                 <div class="contact-name">
