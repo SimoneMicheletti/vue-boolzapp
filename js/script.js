@@ -8,6 +8,7 @@ var app = new Vue({
     arrayRandomResp: ["Si", "No", "Forse", "Dipende", "Va bene", "Ok"],
     rub:  [ { name: "Michele",
               img: "img/avatar_1.jpg",
+              lastOnline: "23/10/2020 17:21",
               chat: [ { text: "Lo sai che ha aperto una nuova pizzeria",
                         time: "23/10/2020 13:30",
                         type: "out"
@@ -32,6 +33,7 @@ var app = new Vue({
             },
             { name: "Giovanni",
               img: "img/avatar_2.jpg",
+              lastOnline: "23/10/2020 13:58",
               chat: [ { text: "Ciao come stai?",
                         time: "23/10/2020 13:57",
                         type: "out"
@@ -48,6 +50,7 @@ var app = new Vue({
             },
             { name: "Lorenzo",
               img: "img/avatar_3.jpg",
+              lastOnline: "23/10/2020 15:36",
               chat: [ { text: "Domani calcetto?",
                         time: "23/10/2020 13:12",
                         type: "out"
@@ -68,6 +71,7 @@ var app = new Vue({
             },
             { name: "Mattia",
               img: "img/avatar_4.jpg",
+              lastOnline: "23/10/2020 14:57",
               chat: [ { text: "Ciao Mattia",
                         time: "23/10/2020 13:55",
                         type: "out"
@@ -92,6 +96,7 @@ var app = new Vue({
             },
             { name: "Mario",
               img: "img/avatar_5.jpg",
+              lastOnline: "23/10/2020 13:33",
               chat: [ { text: "Domenica giro in moto con Mattia",
                         time: "23/10/2020 13:30",
                         type: "out"
@@ -106,19 +111,19 @@ var app = new Vue({
                       }
                     ]
             }
-    ] //fine rub
-  }, //fine data
+    ] // Fine rub
+  }, // Fine data
 
   methods: {
 
-    // funzione active chat
+    // Funzione active chat
     activeChat: function(i) {
       this.active = i;
       setTimeout(this.autoScroll, 1);
       this.removeSelect();
     },
 
-    // funzione push new msg
+    // Funzione push new msg
     pushNewMsg: function() {
       if (this.inputMsg != "") {
         var newMsg = {text: this.inputMsg, time: this.getTime(), type: "out"};
@@ -132,17 +137,18 @@ var app = new Vue({
       }
     },
 
-    // funzione cattura data e ora
+    // Funzione cattura data e ora
     getTime: () => new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear() + " " + new Date().getHours() + ":" + new Date().getMinutes(),
 
-    // funzione risposta automatica
+    // Funzione risposta automatica
     autoResp: function() {
       var resp = {text: this.arrayRandomResp[Math.floor(Math.random() * 6)], time: this.getTime(), type: "in"};
       this.rub[this.active].chat.push(resp);
       setTimeout(this.autoScroll, 1)
+      this.lastOnlineTime()
     },
 
-    // funzione per spostare chat utilizzata al primo posto
+    // Funzione per spostare chat utilizzata al primo posto
     moveUpChat: function() {
       var chatDaSpostare = this.rub[this.active]
       this.rub.splice(this.active, 1)
@@ -174,8 +180,13 @@ var app = new Vue({
 
     // Funzione per cancellare messaggio
     deleteMsg: function(i) {
-        Vue.delete(this.rub[this.active].chat, i)
+      Vue.delete(this.rub[this.active].chat, i)
+    },
+
+    // Funzione per salvare ultimo accesso
+    lastOnlineTime: function() {
+      this.rub[this.active].lastOnline = this.rub[this.active].chat[this.rub[this.active].chat.length-1].time
     }
 
-  }
+  },
 })
