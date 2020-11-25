@@ -157,15 +157,13 @@ var app = new Vue({
 
     // Funzione per scrollare automaticamente in basso chat
     autoScroll: function() {
-      var cnt = document.getElementById("mainchat");
-      cnt.scrollTop = cnt.scrollHeight;
+      var mChat = document.getElementById("mainchat");
+      mChat.scrollTop = mChat.scrollHeight;
     },
 
     // Funzione rimuovere selezione messaggi
     removeSelect: function() {
-      this.rub[this.active].chat.forEach((item, i) => {
-        Vue.delete(this.rub[this.active].chat[i], "isSelected")
-      });
+      this.rub[this.active].chat.forEach((item, i) => Vue.delete(this.rub[this.active].chat[i], "isSelected"));
     },
 
     // Funzione selezione messaggio (per sottomenu)

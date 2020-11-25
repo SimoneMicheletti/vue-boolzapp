@@ -66,11 +66,11 @@
                   {{contact.name}}
                 </div>
                 <div class="contact-prev silver" v-if="contact.chat.length > 0">
-                  {{contact.chat[contact.chat.length-1].text}}
+                  {{contact.chat[contact.chat.length-1].text}}  <!--Anteprima ultimo messaggio-->
                 </div>
               </div>
-              <div class="prev-time silver">
-                {{contact.lastOnline}}
+              <div class="prev-time silver" v-if="contact.chat.length > 0">
+                {{contact.chat[contact.chat.length-1].time}}  <!--Orario ultimo messaggio-->
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@
                 {{rub[active].name}}
               </div>
               <div class="silver">
-                Ultimo accesso {{rub[active].lastOnline}}
+                Ultimo accesso {{rub[active].lastOnline}}  <!--Orario ultimo accesso-->
               </div>
             </div>
 
