@@ -4,8 +4,9 @@ var app = new Vue({
   data: {
     inputMsg: "",
     active: 0,
+    searchKey: "",
     arrayRandomResp: ["Si", "No", "Forse", "Dipende", "Va bene", "Ok"],
-    rub: [ {  name: "Michele",
+    rub:  [ { name: "Michele",
               img: "img/avatar_1.jpg",
               chat: [ { text: "Lo sai che ha aperto una nuova pizzeria",
                         time: "23/10/2020 13:30",
@@ -29,7 +30,7 @@ var app = new Vue({
                       }
                     ]
             },
-           {  name: "Giovanni",
+            { name: "Giovanni",
               img: "img/avatar_2.jpg",
               chat: [ { text: "Ciao come stai?",
                         time: "23/10/2020 13:57",
@@ -112,7 +113,9 @@ var app = new Vue({
 
     // funzione active chat
     activeChat: function(i) {
-      this.active = i
+      this.active = i;
+      setTimeout(this.autoScroll, 1);
+      this.removeSelect();
     },
 
     // funzione push new msg
@@ -120,9 +123,10 @@ var app = new Vue({
       if (this.inputMsg != "") {
         var newMsg = {text: this.inputMsg, time: this.getTime(), type: "out"};
         this.rub[this.active].chat.push(newMsg);
-        setTimeout(this.scrollBottom, 1)
+        setTimeout(this.autoScroll, 1)
         setTimeout(this.autoResp, 1000);
-        this.contactSort();
+        this.moveUpChat();
+        this.removeSelect();
         this.active = 0;
         this.inputMsg = "";
       }
@@ -135,22 +139,43 @@ var app = new Vue({
     autoResp: function() {
       var resp = {text: this.arrayRandomResp[Math.floor(Math.random() * 6)], time: this.getTime(), type: "in"};
       this.rub[this.active].chat.push(resp);
-      setTimeout(this.scrollBottom, 1)
+      setTimeout(this.autoScroll, 1)
     },
 
     // funzione per spostare chat utilizzata al primo posto
-    contactSort: function() {
-      var spostare = this.rub[this.active]
+    moveUpChat: function() {
+      var chatDaSpostare = this.rub[this.active]
       this.rub.splice(this.active, 1)
-      this.rub.unshift(spostare)
+      this.rub.unshift(chatDaSpostare)
     },
 
     // Funzione per scrollare automaticamente in basso chat
-    scrollBottom: function() {
+    autoScroll: function() {
       var cnt = document.getElementById("mainchat");
       cnt.scrollTop = cnt.scrollHeight;
+    },
+
+    // Funzione rimuovere selezione messaggi
+    removeSelect: function() {
+      this.rub[this.active].chat.forEach((item, i) => {
+        Vue.delete(this.rub[this.active].chat[i], "isSelected")
+      });
+    },
+
+    // Funzione selezione messaggio (per sottomenu)
+    selectMsg: function(i) {
+      if (this.rub[this.active].chat[i].isSelected === true) {
+        Vue.delete(this.rub[this.active].chat[i], "isSelected")
+      } else {
+        this.removeSelect()
+        Vue.set(this.rub[this.active].chat[i], "isSelected", true)
+      }
+    },
+
+    // Funzione per cancellare messaggio
+    deleteMsg: function(i) {
+        Vue.delete(this.rub[this.active].chat, i)
     }
 
   }
-
 })

@@ -53,23 +53,23 @@
           <div id="src-chat" class="silver">
             <div>
               <i class="fas fa-search"></i>
-              <input type="text" name="" value="" placeholder="Cerca o inizia una nuova chat">
+              <input v-model="searchKey" type="text" placeholder="Cerca o inizia una nuova chat">
             </div>
           </div>
 
           <!-- Chat list -->
           <div id="chatlist">
-            <div class="contacts" v-for="(contact,i) in rub" @click="activeChat(i)" :class="{'selected': i===active}">
+            <div class="contacts" v-for="(contact,i) in rub" v-if="contact.name.toLowerCase().indexOf(searchKey.toLowerCase())>-1" @click="activeChat(i)" :class="{'selected': i===active}">
               <img :src="contact.img" alt="avatar1">
               <div class="contact-elm">
                 <div class="contact-name">
                   {{contact.name}}
                 </div>
-                <div class="contact-prev silver">
+                <div class="contact-prev silver" v-if="contact.chat.length > 0">
                   {{contact.chat[contact.chat.length-1].text}}
                 </div>
               </div>
-              <div class="prev-time silver">
+              <div class="prev-time silver" v-if="contact.chat.length > 0">
                 {{contact.chat[contact.chat.length-1].time}}
               </div>
             </div>
@@ -88,7 +88,7 @@
               <div>
                 {{rub[active].name}}
               </div>
-              <div class="silver">
+              <div class="silver" v-if="rub[active].chat.length > 0">
                 Ultimo accesso {{rub[active].chat[rub[active].chat.length-1].time}}
               </div>
             </div>
@@ -104,13 +104,19 @@
           <!-- Section right main chat -->
           <div id="mainchat">
 
-            <div v-for="message in rub[active].chat" :class="message.type==='out' ? 'green' : 'white'">
+            <div v-for="(message, i) in rub[active].chat" :class="message.type==='out' ? 'green' : 'white'">
               <div class="message">
                 <div class="msg-text">
                   {{message.text}}
                 </div>
                 <div class="msg-time">
                   {{message.time}}
+                </div>
+                <div class="msg-menu-v" @click="selectMsg(i)">
+                  <i class="fas fa-caret-left"></i>
+                </div>
+                <div class="msg-menu-window" :class="{'selected': rub[active].chat[i].isSelected === true}" @click="deleteMsg(i)">
+                  Cancella messaggio
                 </div>
               </div>
             </div>

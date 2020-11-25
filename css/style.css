@@ -211,6 +211,7 @@ main {
   padding: 10px 20px;
   margin-bottom: 12px;
   overflow: hidden;
+  position: relative;
 }
 
 #mainchat .green .message {
@@ -230,6 +231,48 @@ main {
   margin-top: 5px;
 }
 
+#mainchat .msg-menu-v {
+  display: none;
+  position: absolute;
+  right: 108px;
+  bottom: 5px;
+  color: silver;
+  font-size: 18px;
+}
+
+#mainchat .msg-menu-v:hover {
+  cursor: pointer;
+  color: black;
+}
+
+#mainchat .message:hover .msg-menu-v{
+  display:block
+}
+
+#mainchat>div {
+  position: relative;
+}
+
+#mainchat .msg-menu-window {
+  display: none;
+  position: absolute;
+  bottom: -3px;
+  padding: 2px 4px;
+  border: 1px solid silver;
+  font-size: 13px;
+  right: 119px;
+  bottom: 2px;
+  padding: 2px 4px;
+  border: 1px solid grey;
+}
+
+#mainchat .msg-menu-window.selected {
+  display: block;
+}
+
+#mainchat .msg-menu-window.selected:hover {
+  cursor: pointer;
+}
 
 /* Right bottom */
 
